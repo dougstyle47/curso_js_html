@@ -5,42 +5,99 @@
 
 
 <script>
-    var segredo1 = 5;
-    var segredo2 = 6;
-    var segredo3 = 7;
-
-    var input = document.querySelector("input");
-    input.focus(); //serve para focar no input após errar o valor
-
-    function verifica() {
-
-        if(input.value == segredo1){
-            alert("Você ACERTOU!!!");
     
-        } else {
-            alert("Você ERROU!!!");
-        }
-
-        if(input.value == segredo2){
-            alert("Você ACERTOU!!!");
-    
-        } else {
-            alert("Você ERROU!!!");
-        }
-
-        if(input.value == segredo3){
-            alert("Você ACERTOU!!!");
-    
-        } else {
-            alert("Você ERROU!!!");
-        }
-
-
-        input.value = ""; //serve para limpar o campo após errar o valor
-        input.focus(); //serve para focar no input após errar o valor
+    // essa função é um atalho para retornar um numero aleátorio
+    function sorteia(){
+       
+        return Math.round(Math.random() * 10);
     }
 
+    //essa função vai receber a quantidade de numeros aleátorios e no final devolve uma lista de segredos
+    function sorteiaNumeros(quantidade){
+
+        //essa variavel só existe dentro dessa função por isso que var segredo se repete
+        var segredos = [];//comeca vazio
+        var numero = 1;//ajuda a saber quantos numeros ja sorte-ei
+
+        while(numero <= quantidade) {
+            
+            var numeroAleatorio = sorteia(); //sorteio o numero aleatorio com a função
+
+            if(numeroAleatorio != 0){
+
+                var achou = false; //não encontrou ainda pois ainda não foi verificado
+
+                //for que serve para percorrer a lista de segredos para ver se o numero gerado ja foi gerado anteriormente
+                for(var posicao = 0; posicao < segredos.length; posicao++){
+                    
+                    //se tiver "achou" recebe true e da um break
+                    if(segredos[posicao] == numeroAleatorio){
+                        achou = true;
+                        break;
+                    }
+                }
+
+                if(achou == false){
+                    segredos.push(numeroAleatorio);
+                    numero ++;
+                }
+            }
+
+        }
+        return segredos;
+        
+            var achou = false; //não encontrou ainda pois ainda não foi verificado
+
+            //for que serve para percorrer a lista de segredos para ver se o numero gerado ja foi gerado anteriormente
+            for(var posicao = 0; posicao < segredos.length; posicao++){
+                
+                //se tiver "achou" recebe true e da um break
+                if(segredos[posicao] == numeroAleatorio){
+                    achou = true;
+                    break;
+                }
+            }
+
+            if(achou == false){
+                segredos.push(numeroAleatorio);
+                numero ++;
+            }
+        }
+
+    
+
+    //array 
+    var segredos = sorteiaNumeros(5);
+    console.log(segredos);
+   
+    var input = document.querySelector("input");
+    input.focus(); //serve para focar no input
+
+    //essa funcão vai pegar o valor do verifica e vai comparar com o segredo
+    function verifica() {
+
+        var achou = false;
+        for(var posicao = 0; posicao < segredos.length; posicao++){
+
+            if(input.value == segredos[posicao]){
+                alert("Você ACERTOU!!!");
+                achou = true;
+                break;           
+            }
+        }
+        
+        if(achou == false){
+            alert("Você ERROU!!");
+        }
+
+        input.value = ""; //serve para limpar o campo após errar ou acertar o valor 
+        input.focus(); //serve para focar no input após errar o valor
+       
+        
+    }
+        
+
     var button = document.querySelector("button");
-    button.onclick = verifica;
+    button.onclick = verifica;//função para só fazer rodar o verifica após clicar no botão
 
 </script>
