@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+
+<script>
+
+    var parcelas = [10.40, 40.00, 100.18, 200];
+    var soma = 0;
+
+    for(var i = 0; i < parcelas.length; i = i + 1) {
+        
+        soma +=parcelas[i]//para somar os valores
+        document.write(parcelas[i]);
+        document.write('<br>');
+
+    }
+    
+document.write(soma);
+media = soma/parcelas.length;
+document.write('<br>' + media);
+
+</script>
