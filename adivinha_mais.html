@@ -12,25 +12,26 @@
         return Math.round(Math.random() * 10);
     }
 
-    //essa função vai receber a quantidade de numeros aleátorios e no final devolve uma lista de segredos
+    
+	//essa função vai receber a quantidade de numeros aleátorios e no final devolve uma lista de segredos
     function sorteiaNumeros(quantidade){
 
-        //essa variavel só existe dentro dessa função por isso que var segredo se repete
-        var segredos = [];//comeca vazio
+        //essa variavel só existe dentro dessa função por isso que var segredos se repete
+        var segredos = [];//declara uma lista vazia
         var numero = 1;//ajuda a saber quantos numeros ja sorte-ei
 
         while(numero <= quantidade) {
             
             var numeroAleatorio = sorteia(); //sorteio o numero aleatorio com a função
 
-            if(numeroAleatorio != 0){
+            if(numeroAleatorio != 0){ // esse IF serve somente para garantir que o numero sorteado não seja 0
 
                 var achou = false; //não encontrou ainda pois ainda não foi verificado
 
                 //for que serve para percorrer a lista de segredos para ver se o numero gerado ja foi gerado anteriormente
                 for(var posicao = 0; posicao < segredos.length; posicao++){
                     
-                    //se tiver "achou" recebe true e da um break
+                    //se tiver, "achou" recebe true e da um break pois não é para colocar esse numero na lista
                     if(segredos[posicao] == numeroAleatorio){
                         achou = true;
                         break;
@@ -40,35 +41,19 @@
                 if(achou == false){
                     segredos.push(numeroAleatorio);
                     numero ++;
+                //essa incrementação é bem importante pois ela dentro desse IF só ira gastar caso o numero não seja encontrado
                 }
             }
+		}	
 
-        }
         return segredos;
-        
-            var achou = false; //não encontrou ainda pois ainda não foi verificado
-
-            //for que serve para percorrer a lista de segredos para ver se o numero gerado ja foi gerado anteriormente
-            for(var posicao = 0; posicao < segredos.length; posicao++){
-                
-                //se tiver "achou" recebe true e da um break
-                if(segredos[posicao] == numeroAleatorio){
-                    achou = true;
-                    break;
-                }
-            }
-
-            if(achou == false){
-                segredos.push(numeroAleatorio);
-                numero ++;
-            }
-        }
-
+			
+    }
+	
     
-
     //array 
     var segredos = sorteiaNumeros(5);
-    console.log(segredos);
+    console.log(segredos);//para aparecer no log do navegador a lista de arrays(NC)
    
     var input = document.querySelector("input");
     input.focus(); //serve para focar no input
@@ -98,6 +83,6 @@
         
 
     var button = document.querySelector("button");
-    button.onclick = verifica;//função para só fazer rodar o verifica após clicar no botão
+    button.onclick = verifica; //função para só fazer rodar o verifica após clicar no botão
 
 </script>
